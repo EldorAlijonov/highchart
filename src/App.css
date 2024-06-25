@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.app {
+    width: 100%;
+    display: flex;
+
+}
+
+.app-conatiner {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.app-content {
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.app-content::-webkit-scrollbar {
+    display: none;
+}
+
+.highcharts-credits {
+    display: none;
+}
