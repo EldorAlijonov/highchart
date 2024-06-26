@@ -13,26 +13,10 @@ const CardStyle = styled.div`
 `;
 
 
-const ButtonStyle = styled.button`
-    border: 1px solid #dedde0;
-    outline: none;
-    width: 130px;
-    height: 48px;
-    background-color: transparent;
-    color: #333;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 25px;
+const ButtonStyle = styled.div`
     position: absolute;
     right: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     z-index: 1;
-    .icon{
-        color: #5344ac;
-    }
 `;
 
 

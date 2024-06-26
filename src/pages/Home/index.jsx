@@ -1,9 +1,7 @@
-import "./Home.css";
+import "./Style.css";
 
 import { TopCard, Sales, History, Summary, Invoices } from '../../components';
 const Home = () => {
-
-
     return (
         <div className="home">
             <div className="home-container">

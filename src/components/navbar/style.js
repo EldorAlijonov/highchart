@@ -9,7 +9,7 @@ const NavbarDiv = styled.div`
     justify-content: center;
 
     .navbar-conatiner{
-        width: 1220px;
+        min-width: 1220px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -48,6 +48,7 @@ const NavbarDiv = styled.div`
         align-items: center;
         gap: 20px;
         .bodge{
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -71,6 +72,7 @@ const NavbarDiv = styled.div`
             }
         }
            img{
+                cursor:pointer;
                 width: 36px;
                 height: 36px;
                 border-radius: 50%;

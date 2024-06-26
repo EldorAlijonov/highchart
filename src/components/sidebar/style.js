@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SidebarSider = styled.div`
     background-color: #e9f0fd;
     width: 100px;
-    max-height: 100%;
+    min-height: 100vh;
 
     .container{
         width: 120px;

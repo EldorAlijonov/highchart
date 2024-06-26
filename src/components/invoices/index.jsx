@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { InvoicesStyle } from './style';
 import { BsFileEarmarkArrowDown } from "react-icons/bs";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import tableData from "./data.json";
+import tableData from "../../util/data.json"
+import Dropdown from '../Dropdown';
 
 const Invoices = () => {
 
@@ -68,11 +68,17 @@ const Invoices = () => {
             header: "Option",
             accessorKey: "option",
             cell: () => (
-                <button className="btn">Details<RiArrowDropDownLine className="icon" size={24} /></button>
+                <Dropdown width={"120px"} options={options} onSelect={handleSelect} title={"Details"} />
             )
         }
     ];
 
+
+    const handleSelect = (option) => {
+        console.log(`Selected: ${option}`);
+    };
+
+    const options = ['Option 1', 'Option 2', 'Option 3'];
     const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });
 
     return (

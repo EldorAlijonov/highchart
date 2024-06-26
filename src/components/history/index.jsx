@@ -3,12 +3,13 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Styles from './syle';
 import { RiArrowDropDownLine } from "react-icons/ri";
+import Dropdown from '../Dropdown';
 
 const History = () => {
 
     const { CardStyle, ButtonStyle } = Styles
     const chartComponentRef = useRef(null);
-    const options = {
+    const getOptions = {
         colors: ['#8a24ff', '#4b9f47', '#f5b544', '#2272f0'],
         chart: {
             type: 'column',
@@ -184,12 +185,23 @@ const History = () => {
             ]
         }
     };
+
+
+
+    const handleSelect = (option) => {
+        console.log(`Selected: ${option}`);
+    };
+
+    const options = ['2022', '2023', '2024'];
+
     return (
         <CardStyle>
-            <ButtonStyle>This Year <RiArrowDropDownLine className="icon" size={24} /></ButtonStyle>
+            <ButtonStyle >
+                <Dropdown width={"140px"} options={options} onSelect={handleSelect} title={"This Year"} />
+            </ButtonStyle>
             <HighchartsReact
                 highcharts={Highcharts}
-                options={options}
+                options={getOptions}
                 ref={chartComponentRef}
             />
         </CardStyle>

@@ -2,7 +2,7 @@ import React from 'react';
 import { TopCardStyle } from './style';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { CardItem } from './item';
+import { CardItem } from '../../util/item';
 
 const TopCard = () => {
     const { Columns, CardStyle, CardTop, CardCenter, CardPilus, CardBottom } = TopCardStyle;
