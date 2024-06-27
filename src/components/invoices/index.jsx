@@ -2,21 +2,24 @@ import React, { useState } from 'react';
 import { InvoicesStyle } from './style';
 import { BsFileEarmarkArrowDown } from "react-icons/bs";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
-import tableData from "../../util/data.json"
+import tableData from "../../util/data.json";
 import Dropdown from '../Dropdown';
 
 const Invoices = () => {
-
     const [data, setData] = useState(tableData);
+    const [selectedRows, setSelectedRows] = useState([]);
 
     const columns = [
         {
             id: "select-col",
             header: ({ table }) => (
-                <input type="checkbox" />
+                <input type="checkbox" onChange={selectAllRows}
+                    checked={selectedRows.length === data.length && data.length > 0} />
+
             ),
             cell: ({ row }) => (
-                <input type="checkbox" />
+                <input type="checkbox"
+                    onChange={() => handleRowSelect(row)} checked={selectedRows.includes(row.id)} />
             )
         },
         {
@@ -73,6 +76,24 @@ const Invoices = () => {
         }
     ];
 
+    const handleRowSelect = (row) => {
+        const selectedRowIds = [...selectedRows];
+        if (selectedRowIds.includes(row.id)) {
+            selectedRowIds.splice(selectedRowIds.indexOf(row.id), 1);
+        } else {
+            selectedRowIds.push(row.id);
+        }
+        setSelectedRows(selectedRowIds);
+    };
+
+    const selectAllRows = (e) => {
+        if (e.target.checked) {
+            const allRowIds = data.map(row => row.id);
+            setSelectedRows(allRowIds);
+        } else {
+            setSelectedRows([]);
+        }
+    };
 
     const handleSelect = (option) => {
         console.log(`Selected: ${option}`);
@@ -121,6 +142,6 @@ const Invoices = () => {
             </table>
         </InvoicesStyle>
     );
-}
+};
 
 export default Invoices;

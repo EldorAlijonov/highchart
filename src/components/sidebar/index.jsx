@@ -1,4 +1,4 @@
-import { SiderItem, SiderItemBottom } from "./item";
+import { SiderItem, SiderItemBottom } from "../../util/sidebarItem";
 import { Link, useLocation } from "react-router-dom";
 import SidebarStyle from "./style";
 import logo from "../../assets/logo.png"
