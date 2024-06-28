@@ -2,7 +2,7 @@ import React from 'react'
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts";
-import CardStyle from '../salses/style';
+import CardStyle from '../Salses/style';
 
 const Summary = () => {
 

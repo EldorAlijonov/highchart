@@ -1,65 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { DropdownStyle } from './style';
+import React from 'react';
+import { Dropdown, Button } from 'antd';
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-const Dropdown = (props) => {
+const CustomDropdown = (props) => {
     const { title, options, onSelect, width } = props;
-    const [isOpen, setIsOpen] = useState(false);
-    const [openUpwards, setOpenUpwards] = useState(false);
-    const dropdownRef = useRef(null);
 
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleOptionClick = (option) => {
-        onSelect(option);
-        setIsOpen(false);
-    };
-
-    const updateDropdownPosition = () => {
-        if (dropdownRef.current) {
-
-            // dropdovnni ekrandagi holatini olish uchun getBoundingClientRect() ishlatiladi
-            const rect = dropdownRef.current.getBoundingClientRect();
-
-            // ekran balandligini olish uchun window.innerHeigth ishlatiladi
-            const viewportHeight = window.innerHeight;
-
-            if (rect.bottom + 200 > viewportHeight) {
-                setOpenUpwards(true);
-            } else {
-                setOpenUpwards(false);
-            }
+    const handleMenuClick = (e) => {
+        if (onSelect) {
+            onSelect(e.key);
         }
     };
-    useEffect(() => {
-        updateDropdownPosition();
-        window.addEventListener('resize', updateDropdownPosition);
-        return () => window.removeEventListener('resize', updateDropdownPosition);
-    }, []);
+
+    const items = options.map((option, index) => ({
+        key: `${index}`,
+        label: <div onClick={() => handleMenuClick({ key: index })}>{option}</div>,
+    }));
 
     return (
-        <DropdownStyle $width={width} $openUpwards={openUpwards}>
-            <button className="dropdown-button" onClick={toggleDropdown} ref={dropdownRef}>
-                {title}
-                <RiArrowDropDownLine className={`${isOpen ? "icon" : ""}`} size={24} />
-            </button>
-            {isOpen && (
-                <div className={`dropdown-menu ${openUpwards ? 'upwards' : ''}`}>
-                    {options.map((option, index) => (
-                        <div
-                            key={index}
-                            className="dropdown-item"
-                            onClick={() => handleOptionClick(option)}
-                        >
-                            {option}
-                        </div>
-                    ))}
-                </div>
-            )}
-        </DropdownStyle>
+        <Dropdown menu={{ items }} placement="bottom" arrow>
+            <Button style={{ width }}>{title} <RiArrowDropDownLine size={24} /></Button>
+        </Dropdown>
     );
 };
 
-export default Dropdown;
+export default CustomDropdown;

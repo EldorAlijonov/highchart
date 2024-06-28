@@ -3,7 +3,8 @@ import { InvoicesStyle } from './style';
 import { BsFileEarmarkArrowDown } from "react-icons/bs";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 import tableData from "../../util/data.json";
-import Dropdown from '../Dropdown';
+import CustomDropdown from '../Dropdown';
+
 
 const Invoices = () => {
     const [data, setData] = useState(tableData);
@@ -71,7 +72,7 @@ const Invoices = () => {
             header: "Option",
             accessorKey: "option",
             cell: () => (
-                <Dropdown width={"120px"} options={options} onSelect={handleSelect} title={"Details"} />
+                <CustomDropdown width={"120px"} options={options} onSelect={handleSelect} title={"Details"} />
             )
         }
     ];

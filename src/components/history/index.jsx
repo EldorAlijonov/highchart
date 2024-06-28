@@ -2,8 +2,9 @@ import React, { useRef } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Styles from './syle';
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Dropdown from '../Dropdown';
+import CustomDropdown from '../Dropdown';
+
+
 
 const History = () => {
 
@@ -188,16 +189,17 @@ const History = () => {
 
 
 
+    const options = ['2022', '2023', '2024'];
     const handleSelect = (option) => {
-        console.log(`Selected: ${option}`);
+        const selectedItem = options[option]
+        console.log(`Selected: ${selectedItem}`);
     };
 
-    const options = ['2022', '2023', '2024'];
 
     return (
         <CardStyle>
             <ButtonStyle >
-                <Dropdown width={"140px"} options={options} onSelect={handleSelect} title={"This Year"} />
+                <CustomDropdown width={"140px"} options={options} onSelect={handleSelect} title={"This Year"} />
             </ButtonStyle>
             <HighchartsReact
                 highcharts={Highcharts}

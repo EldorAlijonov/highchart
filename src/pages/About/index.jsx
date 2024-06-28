@@ -1,10 +1,10 @@
 import React from 'react'
-import { Dropdown } from '../../components'
+import { CustomDropdown } from '../../components'
 
 const About = () => {
     return (
         <div style={{ height: "100vh" }}>
-            <Dropdown />
+            <CustomDropdown />
         </div>
     )
 }
