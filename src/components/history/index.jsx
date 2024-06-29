@@ -3,6 +3,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Styles from './syle';
 import CustomDropdown from '../Dropdown';
+import { useDispatch } from 'react-redux';
+import { dropdownSelectedItems } from '../../redux/slice/dropdownSlice';
 
 
 
@@ -189,17 +191,20 @@ const History = () => {
 
 
 
+    const dispantch = useDispatch();
+
+
     const options = ['2022', '2023', '2024'];
     const handleSelect = (option) => {
         const selectedItem = options[option]
-        console.log(`Selected: ${selectedItem}`);
+        dispantch(dropdownSelectedItems(selectedItem))
     };
 
 
     return (
         <CardStyle>
             <ButtonStyle >
-                <CustomDropdown width={"140px"} options={options} onSelect={handleSelect} title={"This Year"} />
+                <CustomDropdown width={"1400px"} options={options} onSelect={handleSelect} title={"This Year"} />
             </ButtonStyle>
             <HighchartsReact
                 highcharts={Highcharts}

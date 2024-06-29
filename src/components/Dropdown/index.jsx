@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown, Button } from 'antd';
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { DropdownStyle } from './style';
 
 const CustomDropdown = (props) => {
     const { title, options, onSelect, width } = props;
@@ -17,9 +18,11 @@ const CustomDropdown = (props) => {
     }));
 
     return (
-        <Dropdown menu={{ items }} placement="bottom" arrow>
-            <Button style={{ width }}>{title} <RiArrowDropDownLine size={24} /></Button>
-        </Dropdown>
+        <DropdownStyle>
+            <Dropdown menu={{ items }} placement="bottom" arrow>
+                <Button width={width}>{title} <RiArrowDropDownLine size={24} className="icon" /></Button>
+            </Dropdown>
+        </DropdownStyle>
     );
 };
 

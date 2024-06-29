@@ -4,23 +4,31 @@ import { BsFileEarmarkArrowDown } from "react-icons/bs";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 import tableData from "../../util/data.json";
 import CustomDropdown from '../Dropdown';
+import { useDispatch } from 'react-redux';
+import { tableSelectedItems } from '../../redux/slice/tableSlice';
 
 
 const Invoices = () => {
-    const [data, setData] = useState(tableData);
-    const [selectedRows, setSelectedRows] = useState([]);
 
+    const [selectedRows, setSelectedRows] = useState(tableData);
+    const [data, setData] = useState(selectedRows);
+    const [checkInput, setCheckInput] = useState()
+    const handleChange = (e) => {
+        setCheckInput(e.target.checked)
+        let newData = selectedRows
+        let newda = newData.map((item) => {
+            return item.checked = e.target.checked
+        })
+    }
     const columns = [
         {
             id: "select-col",
-            header: ({ table }) => (
-                <input type="checkbox" onChange={selectAllRows}
-                    checked={selectedRows.length === data.length && data.length > 0} />
+            header: ({ data }) => (
+                <> <input type="checkbox" checked={checkInput} onChange={(e) => handleChange(e)} /></>
 
             ),
             cell: ({ row }) => (
-                <input type="checkbox"
-                    onChange={() => handleRowSelect(row)} checked={selectedRows.includes(row.id)} />
+                <> <input type="checkbox" checked={row.original.checked} /></>
             )
         },
         {
@@ -71,36 +79,23 @@ const Invoices = () => {
         {
             header: "Option",
             accessorKey: "option",
-            cell: () => (
-                <CustomDropdown width={"120px"} options={options} onSelect={handleSelect} title={"Details"} />
+            cell: ({ row }) => (
+                <CustomDropdown width={"120px"}
+                    options={options} onSelect={(option) => handleSelect(option, row.id)}
+                    title={"Details"} />
             )
         }
     ];
 
-    const handleRowSelect = (row) => {
-        const selectedRowIds = [...selectedRows];
-        if (selectedRowIds.includes(row.id)) {
-            selectedRowIds.splice(selectedRowIds.indexOf(row.id), 1);
-        } else {
-            selectedRowIds.push(row.id);
-        }
-        setSelectedRows(selectedRowIds);
+
+    const dispatch = useDispatch();
+
+    const options = ['Details 1', 'Details 2', 'Details 3'];
+
+    const handleSelect = (option, id) => {
+        dispatch(tableSelectedItems({ option: options[option], rowId: id }));
     };
 
-    const selectAllRows = (e) => {
-        if (e.target.checked) {
-            const allRowIds = data.map(row => row.id);
-            setSelectedRows(allRowIds);
-        } else {
-            setSelectedRows([]);
-        }
-    };
-
-    const handleSelect = (option) => {
-        console.log(`Selected: ${option}`);
-    };
-
-    const options = ['Option 1', 'Option 2', 'Option 3'];
     const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });
 
     return (

@@ -8,7 +8,8 @@
         "amount": "250",
         "email": "enfazdel@jetolmu.io",
         "product_id": "01015",
-        "status": "Pending"
+        "status": "Pending",
+        "checked": false
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         "amount": "150",
         "email": "enfazdel@jetolmu.io",
         "product_id": "01016",
-        "status": "Unpaid"
+        "status": "Unpaid",
+        "checked": false
     },
     {
         "id": 3,
@@ -30,7 +32,8 @@
         "amount": "-200",
         "email": "enfazdel@jetolmu.io",
         "product_id": "01017",
-        "status": "Paid"
+        "status": "Paid",
+        "checked": false
     },
     {
         "id": 4,
@@ -38,9 +41,10 @@
         "customer_id": "#123123",
         "customer_name": "Matilda Cook",
         "date": "15 April 2024",
-        "amount": "300",
+        "amount": "-300",
         "email": "enfazdel@jetolmu.io",
         "product_id": "01018",
-        "status": "Paid"
+        "status": "Paid",
+        "checked": false
     }
 ]
